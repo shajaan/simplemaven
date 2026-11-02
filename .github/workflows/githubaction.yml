@@ -6,6 +6,7 @@ on:
 jobs:
   ast-default-ssc:
     runs-on: ubuntu-latest
+    environment: SSC
     permissions:
       contents: read
       security-events: write
