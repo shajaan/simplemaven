@@ -1,0 +1,26 @@
+name: 01 - Test Setup Action (SSC)
+
+on:
+  workflow_dispatch:
+
+jobs:
+  setup-ssc:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v4
+
+      - name: Setup Fortify tools from fix/pinned-actions
+        uses: fortify/github-action/setup@fix/pinned-actions
+        with:
+          fcli: bootstrapped
+          sc-client: latest
+          export-path: true
+        env:
+          FCLI_BOOTSTRAP_VERSION: dev_v3.x
+
+      - name: Verify fcli installation
+        run: fcli --version
+
+      - name: Verify ScanCentral Client installation
+        run: scancentral --version
